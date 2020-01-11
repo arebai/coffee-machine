@@ -22,8 +22,12 @@ public class OrderTest {
         return Arrays.asList(
                 new Object[][]{
                         {Drink.TEA, 1, true},
+                        {Drink.TEA, 0, false},
                         {Drink.CHOCOLATE, 0, false},
+                        {Drink.CHOCOLATE, 1, true},
                         {Drink.COFFEE, 2, true},
+                        {Drink.COFFEE, 4, true},
+                        {Drink.COFFEE, 0, false},
 
                 }
         );
