@@ -19,6 +19,6 @@ public class Order {
     }
 
     public boolean withStick() {
-        return true;
+        return sugarAmount >= 1;
     }
 }

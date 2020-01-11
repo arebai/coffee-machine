@@ -15,4 +15,14 @@ public class OrderTest {
         assertThat(order.getSugarAmount()).isEqualTo(sugarAmount);
         assertThat(order.withStick()).isTrue();
     }
+
+    @Test
+    public void should_create_order_of_1_of_chocolate_with_no_sugar_and_no_stick() {
+        Drink chocolate = Drink.CHOCOLATE;
+        int noSugar = 0;
+        Order order = new Order(chocolate, noSugar);
+        assertThat(order.getDrink()).isEqualTo(chocolate);
+        assertThat(order.getSugarAmount()).isEqualTo(noSugar);
+        assertThat(order.withStick()).isFalse();
+    }
 }
