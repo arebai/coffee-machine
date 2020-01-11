@@ -23,6 +23,8 @@ public class OrderTest {
                 new Object[][]{
                         {Drink.TEA, 1, true},
                         {Drink.CHOCOLATE, 0, false},
+                        {Drink.COFFEE, 2, true},
+
                 }
         );
     }
