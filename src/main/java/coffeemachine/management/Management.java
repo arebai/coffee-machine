@@ -4,22 +4,22 @@ import coffeemachine.Drink;
 import coffeemachine.business.Money;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Management {
 
+    private OrderRepository orderRepository;
 
-    public Report generate() {
-        Collection<Drink> drinks = getDailyDrinks();
-        Map<Drink, Long> countByDrink = getCountByDrink(drinks);
-        return new Report(countByDrink, new Money(0.4));
+    public Management(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
     }
 
-    private Collection<Drink> getDailyDrinks() {
-        return Collections.singletonList(Drink.TEA);
+    public Report generate() {
+        Collection<Drink> drinks = orderRepository.getDailyDrinks();
+        Map<Drink, Long> countByDrink = getCountByDrink(drinks);
+        return new Report(countByDrink, new Money(0.4));
     }
 
     private Map<Drink, Long> getCountByDrink(Collection<Drink> drinks) {
