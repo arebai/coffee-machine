@@ -28,6 +28,7 @@ public class OrderTest {
                         {Drink.COFFEE, 2, true},
                         {Drink.COFFEE, 4, true},
                         {Drink.COFFEE, 0, false},
+                        {Drink.JUICE, 0, false},
 
                 }
         );
