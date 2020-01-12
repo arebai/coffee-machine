@@ -4,11 +4,11 @@ public class Order {
 
     private final Drink drink;
     private final int sugarAmount;
-    private final boolean extraHot;
+    private final Hot hot;
 
-    public Order(Drink drink, boolean extraHot, int sugarAmount) {
+    public Order(Drink drink, boolean isExtraHot, int sugarAmount) {
         this.drink = drink;
-        this.extraHot = extraHot;
+        this.hot = isExtraHot ? Hot.EXTRA : Hot.DEFAULT;
         this.sugarAmount = sugarAmount;
     }
 
@@ -25,6 +25,6 @@ public class Order {
     }
 
     public boolean isExtraHot() {
-        return extraHot;
+        return hot == Hot.EXTRA;
     }
 }
