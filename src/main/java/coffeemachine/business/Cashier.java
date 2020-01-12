@@ -12,6 +12,9 @@ public class Cashier {
 
     public Money checkout(Drink drink, Money money) {
         Money drinkPrice = menu.getPrice(drink);
+        if (money.getAmount() >= drinkPrice.getAmount()) {
+            return Money.NONE;
+        }
         return new Money(drinkPrice.getAmount() - money.getAmount());
     }
 

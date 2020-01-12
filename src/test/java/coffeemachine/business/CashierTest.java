@@ -30,5 +30,9 @@ public class CashierTest {
         assertThat(cashier.checkout(Drink.CHOCOLATE, new Money(0.3)).getAmount()).isCloseTo(new Money(0.2).getAmount(), OFFSET);
     }
 
+    @Test
+    public void should_return_no_missing_when_too_match_money_is_given() {
+        assertThat(cashier.checkout(Drink.TEA, new Money(0.5))).isEqualTo(Money.NONE);
+    }
 
 }
