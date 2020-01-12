@@ -6,16 +6,22 @@ import coffeemachine.api.impl.DrinkMakerImpl;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import static org.mockito.Mockito.*;
+
 public class DrinkMakerTest {
 
     @Test
-    public void should_notify_missing_coffee_drink() {
-        EmailNotifier emailNotifier = Mockito.mock(EmailNotifier.class);
-        DrinkMaker drinkMaker = new DrinkMakerImpl(emailNotifier);
+    public void should_notify_when_missing_coffee_drink() {
+        EmailNotifier emailNotifier = mock(EmailNotifier.class);
+        BeverageQuantityChecker beverageQuantityChecker = mock(BeverageQuantityChecker.class);
+        Mockito.when(beverageQuantityChecker.isEmpty(Drink.COFFEE)).thenReturn(true);
+
+        DrinkMaker drinkMaker = new DrinkMakerImpl(beverageQuantityChecker, emailNotifier);
         Order coffeeOrder = Order.Builder.anOrder().drink(Drink.COFFEE).build();
 
         drinkMaker.process(coffeeOrder);
 
-        Mockito.verify(emailNotifier, Mockito.times(1)).notifyMissingDrink(Drink.COFFEE);
+        verify(emailNotifier, times(1)).notifyMissingDrink(Drink.COFFEE);
+        verify(beverageQuantityChecker, times(1)).isEmpty(Drink.COFFEE);
     }
 }
