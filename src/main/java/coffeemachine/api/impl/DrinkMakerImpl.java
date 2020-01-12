@@ -18,7 +18,9 @@ public class DrinkMakerImpl implements DrinkMaker {
 
     @Override
     public void process(Order order) {
-        this.beverageQuantityChecker.isEmpty(Drink.COFFEE);
-        this.emailNotifier.notifyMissingDrink(Drink.COFFEE);
+        Drink drink = order.getDrink();
+        if (this.beverageQuantityChecker.isEmpty(drink)) {
+            this.emailNotifier.notifyMissingDrink(drink);
+        }
     }
 }
