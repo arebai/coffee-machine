@@ -25,4 +25,10 @@ public class CashierTest {
     }
 
 
+    @Test
+    public void should_compute_chocolate_missing_money() {
+        assertThat(cashier.checkout(Drink.CHOCOLATE, new Money(0.3)).getAmount()).isCloseTo(new Money(0.2).getAmount(), OFFSET);
+    }
+
+
 }
