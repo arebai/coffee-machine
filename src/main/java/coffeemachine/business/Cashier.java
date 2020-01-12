@@ -4,6 +4,7 @@ import coffeemachine.Drink;
 
 public class Cashier {
     public Money checkout(Drink drink, Money money) {
-        return new Money(0.1);
+        double teaPrice = 0.4;
+        return new Money(teaPrice - money.getAmount());
     }
 }

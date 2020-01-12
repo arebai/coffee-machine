@@ -7,6 +7,10 @@ public class Money {
         this.amount = amount;
     }
 
+    public double getAmount() {
+        return amount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
