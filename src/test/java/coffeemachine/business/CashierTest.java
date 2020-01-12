@@ -31,8 +31,17 @@ public class CashierTest {
     }
 
     @Test
+    public void should_compute_juice_missing_money() {
+        assertThat(cashier.computeMissingMoney(Drink.JUICE, new Money(0.4)).getAmount()).isCloseTo(new Money(0.2).getAmount(), OFFSET);
+        assertThat(cashier.computeMissingMoney(Drink.JUICE, new Money(0.5)).getAmount()).isCloseTo(new Money(0.1).getAmount(), OFFSET);
+        assertThat(cashier.computeMissingMoney(Drink.JUICE, new Money(0.6))).isEqualTo(Money.NONE);
+        assertThat(cashier.computeMissingMoney(Drink.JUICE, new Money(0.7))).isEqualTo(Money.NONE);
+    }
+
+    @Test
     public void should_return_no_missing_when_too_match_money_is_given() {
         assertThat(cashier.computeMissingMoney(Drink.TEA, new Money(0.5))).isEqualTo(Money.NONE);
     }
+
 
 }
