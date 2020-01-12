@@ -1,6 +1,7 @@
 package coffeemachine.business;
 
 import coffeemachine.Drink;
+import coffeemachine.business.impl.MenuMemoryImpl;
 import org.assertj.core.data.Offset;
 import org.junit.Test;
 
@@ -9,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CashierTest {
 
     private static Offset<Double> OFFSET = Offset.offset(0.0000001);
-    private Cashier cashier = new Cashier();
+    private Cashier cashier = new Cashier(new MenuMemoryImpl());
 
     @Test
     public void should_compute_tea_missing_money() {
