@@ -1,9 +1,9 @@
 package coffeemachine.management;
 
-import coffeemachine.Drink;
 import coffeemachine.business.Menu;
 import coffeemachine.business.Money;
 import coffeemachine.business.impl.MenuMemoryImpl;
+import coffeemachine.model.Drink;
 import org.junit.Test;
 
 import java.util.Arrays;

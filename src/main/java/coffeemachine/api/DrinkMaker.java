@@ -1,6 +1,6 @@
 package coffeemachine.api;
 
-import coffeemachine.Order;
+import coffeemachine.model.Order;
 
 public interface DrinkMaker {
     void process(Order order);

@@ -1,5 +1,8 @@
 package coffeemachine;
 
+import coffeemachine.model.Drink;
+import coffeemachine.model.Hot;
+import coffeemachine.model.Order;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

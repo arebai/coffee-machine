@@ -1,6 +1,6 @@
 package coffeemachine.management;
 
-import coffeemachine.Drink;
+import coffeemachine.model.Drink;
 
 import java.util.Collection;
 

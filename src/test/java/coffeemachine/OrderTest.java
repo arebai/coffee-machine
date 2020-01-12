@@ -1,5 +1,8 @@
 package coffeemachine;
 
+import coffeemachine.model.Drink;
+import coffeemachine.model.Hot;
+import coffeemachine.model.Order;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

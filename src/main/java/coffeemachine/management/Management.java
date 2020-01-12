@@ -1,8 +1,8 @@
 package coffeemachine.management;
 
-import coffeemachine.Drink;
 import coffeemachine.business.Menu;
 import coffeemachine.business.Money;
+import coffeemachine.model.Drink;
 
 import java.util.Collection;
 import java.util.Map;

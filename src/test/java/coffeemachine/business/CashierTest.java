@@ -1,7 +1,7 @@
 package coffeemachine.business;
 
-import coffeemachine.Drink;
 import coffeemachine.business.impl.MenuMemoryImpl;
+import coffeemachine.model.Drink;
 import org.assertj.core.data.Offset;
 import org.junit.Test;
 

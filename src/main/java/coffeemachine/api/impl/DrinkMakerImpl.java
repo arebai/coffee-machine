@@ -1,10 +1,10 @@
 package coffeemachine.api.impl;
 
-import coffeemachine.Drink;
-import coffeemachine.Order;
 import coffeemachine.api.BeverageQuantityChecker;
 import coffeemachine.api.DrinkMaker;
 import coffeemachine.api.EmailNotifier;
+import coffeemachine.model.Drink;
+import coffeemachine.model.Order;
 
 public class DrinkMakerImpl implements DrinkMaker {
 

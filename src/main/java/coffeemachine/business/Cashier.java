@@ -1,6 +1,6 @@
 package coffeemachine.business;
 
-import coffeemachine.Drink;
+import coffeemachine.model.Drink;
 
 public class Cashier {
 

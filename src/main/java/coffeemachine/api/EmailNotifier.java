@@ -1,6 +1,6 @@
 package coffeemachine.api;
 
-import coffeemachine.Drink;
+import coffeemachine.model.Drink;
 
 public interface EmailNotifier {
     void notifyMissingDrink(Drink drink);
