@@ -2,6 +2,7 @@ package coffeemachine;
 
 public class Order {
 
+    public static final Order NONE = new Order();
     private Drink drink;
     private int sugarAmount;
     private Hot hot;
@@ -54,11 +55,21 @@ public class Order {
         }
 
         public Order build() {
+            if (!isValidOrder()) {
+                return Order.NONE;
+            }
             Order order = new Order();
             order.drink = this.drink;
             order.hot = this.hot;
             order.sugarAmount = this.sugarAmount;
             return order;
+        }
+
+        private boolean isValidOrder() {
+            if (this.drink == Drink.JUICE) {
+                return this.hot != Hot.EXTRA;
+            }
+            return true;
         }
     }
 }
