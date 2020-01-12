@@ -10,9 +10,9 @@ public class Cashier {
         this.menu = menu;
     }
 
-    public Money checkout(Drink drink, Money money) {
+    public Money computeMissingMoney(Drink drink, Money money) {
         Money drinkPrice = menu.getPrice(drink);
-        if (money.getAmount() >= drinkPrice.getAmount()) {
+        if (money.isGreaterThan(drinkPrice)) {
             return Money.NONE;
         }
         return new Money(drinkPrice.getAmount() - money.getAmount());

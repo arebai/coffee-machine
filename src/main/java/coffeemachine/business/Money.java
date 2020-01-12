@@ -27,4 +27,8 @@ public class Money {
                 "amount=" + amount +
                 '}';
     }
+
+    public boolean isGreaterThan(Money money) {
+        return this.amount >= money.amount;
+    }
 }
