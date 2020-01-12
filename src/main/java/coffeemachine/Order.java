@@ -2,14 +2,11 @@ package coffeemachine;
 
 public class Order {
 
-    private final Drink drink;
-    private final int sugarAmount;
-    private final Hot hot;
+    private Drink drink;
+    private int sugarAmount;
+    private Hot hot;
 
-    public Order(Drink drink, boolean isExtraHot, int sugarAmount) {
-        this.drink = drink;
-        this.hot = isExtraHot ? Hot.EXTRA : Hot.DEFAULT;
-        this.sugarAmount = sugarAmount;
+    private Order() {
     }
 
     public Drink getDrink() {
@@ -26,5 +23,42 @@ public class Order {
 
     public boolean isExtraHot() {
         return hot == Hot.EXTRA;
+    }
+
+
+    public static final class Builder {
+        private Drink drink;
+        private int sugarAmount;
+        private Hot hot;
+
+        private Builder() {
+        }
+
+        public static Builder anOrder() {
+            return new Builder();
+        }
+
+        public Builder drink(Drink drink) {
+            this.drink = drink;
+            return this;
+        }
+
+        public Builder sugarAmount(int sugarAmount) {
+            this.sugarAmount = sugarAmount;
+            return this;
+        }
+
+        public Builder hot(Hot hot) {
+            this.hot = hot;
+            return this;
+        }
+
+        public Order build() {
+            Order order = new Order();
+            order.drink = this.drink;
+            order.hot = this.hot;
+            order.sugarAmount = this.sugarAmount;
+            return order;
+        }
     }
 }

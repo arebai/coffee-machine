@@ -44,7 +44,13 @@ public class OrderTest {
 
     @Test
     public void should_create_order() {
-        Order order = new Order(drink, extraHot, sugarAmount);
+        Hot hot = extraHot ? Hot.EXTRA : Hot.DEFAULT;
+        Order order = Order.Builder
+                .anOrder()
+                .drink(drink)
+                .sugarAmount(sugarAmount)
+                .hot(hot)
+                .build();
         assertThat(order.getDrink()).isEqualTo(drink);
         assertThat(order.getSugarAmount()).isEqualTo(sugarAmount);
         assertThat(order.withStick()).isEqualTo(withStick);
