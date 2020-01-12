@@ -6,15 +6,15 @@ import coffeemachine.business.Money;
 import java.util.Map;
 
 public class Report {
-    private final Map<Drink, Integer> countByDrink;
+    private final Map<Drink, Long> countByDrink;
     private final Money totalEarned;
 
-    public Report(Map<Drink, Integer> countByDrink, Money totalEarned) {
+    public Report(Map<Drink, Long> countByDrink, Money totalEarned) {
         this.countByDrink = countByDrink;
         this.totalEarned = totalEarned;
     }
 
-    public Map<Drink, Integer> getCountByDrink() {
+    public Map<Drink, Long> getCountByDrink() {
         return countByDrink;
     }
 

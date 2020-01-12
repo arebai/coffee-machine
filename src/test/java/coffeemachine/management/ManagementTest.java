@@ -14,8 +14,9 @@ public class ManagementTest {
     public void should_generate_report_with_tea_count() {
         Management management = new Management();
         Report report = management.generate();
-        Map<Drink, Integer> countByDrink = report.getCountByDrink();
+        Map<Drink, Long> countByDrink = report.getCountByDrink();
         assertThat(countByDrink.get(Drink.TEA)).isEqualTo(1);
         assertThat(report.getTotalEarned()).isEqualTo(new Money(0.4));
     }
+
 }
