@@ -8,6 +8,8 @@ public class CoffeeMachine {
     }
 
     public void process(Order order) {
-        drinkMaker.send("T:1:0");
+
+        String instruction = order.getDrink().getKey() + ":" + order.getSugarAmount() + ":0";
+        drinkMaker.send(instruction);
     }
 }
