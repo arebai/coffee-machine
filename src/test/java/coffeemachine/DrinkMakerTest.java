@@ -22,7 +22,9 @@ public class DrinkMakerTest {
                         { new Order(Drink.TEA, 1), "T:1:0"},
                         { new Order(Drink.COFFEE, 2), "C:2:0"},
                         { new Order(Drink.CHOCOLATE, 0), "H::"},
-
+                        { new Order(Drink.CHOCOLATE, 1), "H:1:0"},
+                        { new Order(Drink.TEA, 0), "T::"},
+                        { new Order(Drink.COFFEE, 0), "C::"},
                 }
         );
     }
