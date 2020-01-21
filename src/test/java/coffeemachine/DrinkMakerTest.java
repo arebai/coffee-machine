@@ -9,6 +9,10 @@ import org.mockito.Mockito;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 @RunWith(Parameterized.class)
 public class DrinkMakerTest {
 
@@ -19,14 +23,22 @@ public class DrinkMakerTest {
     public static Collection<Object[]> params() {
         return Arrays.asList(
                 new Object[][]{
-                        { new Order(Drink.TEA, 1), "T:1:0"},
-                        { new Order(Drink.COFFEE, 2), "C:2:0"},
-                        { new Order(Drink.CHOCOLATE, 0), "H::"},
-                        { new Order(Drink.CHOCOLATE, 1), "H:1:0"},
-                        { new Order(Drink.TEA, 0), "T::"},
-                        { new Order(Drink.COFFEE, 0), "C::"},
+                        {anOrder(Drink.TEA, 1), "T:1:0"},
+                        {anOrder(Drink.COFFEE, 2), "C:2:0"},
+                        {anOrder(Drink.CHOCOLATE, 0), "H::"},
+                        {anOrder(Drink.CHOCOLATE, 1), "H:1:0"},
+                        {anOrder(Drink.TEA, 0), "T::"},
+                        {anOrder(Drink.COFFEE, 0), "C::"},
                 }
         );
+    }
+
+    private static Order anOrder(Drink drink, int sugarAmount) {
+        return Order.Builder
+                .anOrder()
+                .drink(drink)
+                .sugarAmount(sugarAmount)
+                .build();
     }
 
     public DrinkMakerTest(Order order, String expectedInstruction) {
@@ -37,8 +49,10 @@ public class DrinkMakerTest {
     @Test
     public void should_generate_instruction_when_process_order() {
         // given
-        DrinkMaker drinkMaker = Mockito.mock(DrinkMaker.class);
-        CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
+        DrinkMaker drinkMaker = mock(DrinkMaker.class);
+        Cashier cashier = mock(Cashier.class);
+        when(cashier.computeMissingMoney(any(Order.class))).thenReturn(Money.NONE);
+        CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker, cashier);
         // when
         coffeeMachine.process(order);
         // then

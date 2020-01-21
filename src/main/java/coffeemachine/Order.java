@@ -1,13 +1,12 @@
 package coffeemachine;
 
 public class Order {
-    private final Drink drink;
-    private final int sugarAmount;
+    private Drink drink;
+    private int sugarAmount;
+    private Money money;
 
-    public Order(Drink drink, int sugarAmount) {
+    private Order() {
 
-        this.drink = drink;
-        this.sugarAmount = sugarAmount;
     }
 
     public Drink getDrink() {
@@ -20,5 +19,45 @@ public class Order {
 
     public boolean withSugar() {
         return sugarAmount >= 1;
+    }
+
+    public Money getMoney() {
+        return money;
+    }
+
+    public static final class Builder {
+        private Drink drink;
+        private int sugarAmount;
+        private Money money;
+
+        private Builder() {
+        }
+
+        public static Builder anOrder() {
+            return new Builder();
+        }
+
+        public Builder drink(Drink drink) {
+            this.drink = drink;
+            return this;
+        }
+
+        public Builder sugarAmount(int sugarAmount) {
+            this.sugarAmount = sugarAmount;
+            return this;
+        }
+
+        public Builder money(Money money) {
+            this.money = money;
+            return this;
+        }
+
+        public Order build() {
+            Order order = new Order();
+            order.sugarAmount = this.sugarAmount;
+            order.money = this.money;
+            order.drink = this.drink;
+            return order;
+        }
     }
 }
