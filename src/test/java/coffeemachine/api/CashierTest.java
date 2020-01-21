@@ -26,7 +26,13 @@ public class CashierTest {
                 new Object[][]{
                         {anOrder(Drink.TEA, new Money(0.1)), new Money(0.3)},
                         {anOrder(Drink.TEA, new Money(0.3)), new Money(0.1)},
-                        {anOrder(Drink.TEA, new Money(0.5)), Money.NONE}
+                        {anOrder(Drink.TEA, new Money(0.5)), Money.NONE},
+                        {anOrder(Drink.COFFEE, new Money(0.5)), new Money(0.1)},
+                        {anOrder(Drink.COFFEE, new Money(0.2)), new Money(0.4)},
+                        {anOrder(Drink.COFFEE, new Money(0.6)), Money.NONE},
+                        {anOrder(Drink.COFFEE, new Money(0.7)), Money.NONE},
+                        {anOrder(Drink.CHOCOLATE, new Money(0.2)), new Money(0.3)},
+                        {anOrder(Drink.CHOCOLATE, new Money(0.4)), new Money(0.1)},
                 }
         );
     }
