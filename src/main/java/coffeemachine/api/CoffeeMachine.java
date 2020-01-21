@@ -16,16 +16,25 @@ public class CoffeeMachine {
     public void process(Order order) {
         Money missingMoney = cashier.computeMissingMoney(order);
         if (missingMoney != Money.NONE) {
-            drinkMaker.send("MISSING_MONEY:0.3");
+            sendInstruction(generateMissingMoneyInstruction(missingMoney));
             return;
         }
-        String instruction = generateOrderInstruction(order);
-        drinkMaker.send(instruction);
+        sendInstruction(generateOrderInstruction(order));
     }
+
+    private String generateMissingMoneyInstruction(Money missingMoney) {
+        String missingMoneyText = String.format("%.2f", missingMoney.getAmount());
+        return "MISSING_MONEY:" + missingMoneyText;
+    }
+
 
     private String generateOrderInstruction(Order order) {
         Drink drink = order.getDrink();
         String sugarAndStickInstruction = order.withSugar() ? order.getSugarAmount() + ":0" : ":";
         return drink.getKey() + ":" + sugarAndStickInstruction;
+    }
+
+    private void sendInstruction(String instruction) {
+        drinkMaker.send(instruction);
     }
 }

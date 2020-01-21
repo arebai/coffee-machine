@@ -1,5 +1,6 @@
 package coffeemachine.api;
 
+import coffeemachine.api.impl.CashierImpl;
 import coffeemachine.model.Drink;
 import coffeemachine.model.Money;
 import coffeemachine.model.Order;
@@ -14,9 +15,8 @@ public class MissingMoneyTest {
     public void should_generate_tea_missing_money_instruction() {
         // given
         DrinkMaker drinkMaker = mock(DrinkMaker.class);
-        Cashier cashier = mock(Cashier.class);
 
-        CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker, cashier);
+        CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker, new CashierImpl());
         Order order = Order.Builder
                 .anOrder()
                 .drink(Drink.TEA)
@@ -25,6 +25,23 @@ public class MissingMoneyTest {
         // when
         coffeeMachine.process(order);
         // then
-        Mockito.verify(drinkMaker).send("MISSING_MONEY:0.3");
+        Mockito.verify(drinkMaker).send("MISSING_MONEY:0,30");
+    }
+
+    @Test
+    public void should_generate_coffee_missing_money_instruction() {
+        // given
+        DrinkMaker drinkMaker = mock(DrinkMaker.class);
+
+        CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker, new CashierImpl());
+        Order order = Order.Builder
+                .anOrder()
+                .drink(Drink.COFFEE)
+                .money(new Money(0.1))
+                .build();
+        // when
+        coffeeMachine.process(order);
+        // then
+        Mockito.verify(drinkMaker).send("MISSING_MONEY:0,50");
     }
 }
