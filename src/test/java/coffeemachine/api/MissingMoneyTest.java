@@ -24,6 +24,11 @@ public class MissingMoneyTest {
                 new Object[][]{
                         {anOrder(Drink.TEA, new Money(0.1)), "MISSING_MONEY:0,30"},
                         {anOrder(Drink.COFFEE, new Money(0.1)), "MISSING_MONEY:0,50"},
+                        {anOrder(Drink.COFFEE, new Money(0.2)), "MISSING_MONEY:0,40"},
+                        {anOrder(Drink.CHOCOLATE, new Money(0.2)), "MISSING_MONEY:0,30"},
+                        {anOrder(Drink.CHOCOLATE, new Money(0.4)), "MISSING_MONEY:0,10"},
+                        {anOrder(Drink.TEA, new Money(0.4)), "T::"},
+                        {anOrder(Drink.CHOCOLATE, new Money(0.8)), "H::"},
 
                 }
         );
