@@ -6,6 +6,11 @@ import coffeemachine.model.Order;
 
 public class CashierImpl implements Cashier {
     public Money computeMissingMoney(Order order) {
-        return new Money(0.3);
+        double teaPrice = 0.4;
+        Money money = order.getMoney();
+        if (money.getAmount() > teaPrice) {
+            return Money.NONE;
+        }
+        return new Money(teaPrice - money.getAmount());
     }
 }

@@ -9,6 +9,10 @@ public class Money {
         this.amount = amount;
     }
 
+    public double getAmount() {
+        return amount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -17,4 +21,10 @@ public class Money {
         return Double.compare(money.amount, amount) == 0;
     }
 
+    @Override
+    public String toString() {
+        return "Money{" +
+                "amount=" + amount +
+                '}';
+    }
 }
