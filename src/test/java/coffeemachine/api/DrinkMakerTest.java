@@ -1,5 +1,8 @@
-package coffeemachine;
+package coffeemachine.api;
 
+import coffeemachine.model.Drink;
+import coffeemachine.model.Money;
+import coffeemachine.model.Order;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

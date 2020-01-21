@@ -1,4 +1,8 @@
-package coffeemachine;
+package coffeemachine.api;
+
+import coffeemachine.model.Drink;
+import coffeemachine.model.Money;
+import coffeemachine.model.Order;
 
 public class CoffeeMachine {
     private final DrinkMaker drinkMaker;

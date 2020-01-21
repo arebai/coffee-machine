@@ -1,4 +1,4 @@
-package coffeemachine;
+package coffeemachine.model;
 
 public enum Drink {
     TEA("T"),

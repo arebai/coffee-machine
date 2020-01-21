@@ -1,5 +1,9 @@
-package coffeemachine;
+package coffeemachine.api;
 
+import coffeemachine.api.impl.CashierImpl;
+import coffeemachine.model.Drink;
+import coffeemachine.model.Money;
+import coffeemachine.model.Order;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
