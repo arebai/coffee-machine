@@ -2,7 +2,8 @@ package coffeemachine;
 
 public enum Drink {
     TEA("T"),
-    COFFEE("C");
+    COFFEE("C"),
+    CHOCOLATE("H");
 
     private final String key;
 

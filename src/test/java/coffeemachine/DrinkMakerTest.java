@@ -21,6 +21,7 @@ public class DrinkMakerTest {
                 new Object[][]{
                         { new Order(Drink.TEA, 1), "T:1:0"},
                         { new Order(Drink.COFFEE, 2), "C:2:0"},
+                        { new Order(Drink.CHOCOLATE, 0), "H::"},
 
                 }
         );

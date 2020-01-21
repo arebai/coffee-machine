@@ -17,4 +17,8 @@ public class Order {
     public int getSugarAmount() {
         return sugarAmount;
     }
+
+    public boolean withSugar() {
+        return sugarAmount >= 1;
+    }
 }

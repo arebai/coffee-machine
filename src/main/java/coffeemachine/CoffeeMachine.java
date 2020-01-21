@@ -9,7 +9,13 @@ public class CoffeeMachine {
 
     public void process(Order order) {
 
-        String instruction = order.getDrink().getKey() + ":" + order.getSugarAmount() + ":0";
+        String instruction = generateOrderInstruction(order);
         drinkMaker.send(instruction);
+    }
+
+    private String generateOrderInstruction(Order order) {
+        Drink drink = order.getDrink();
+        String sugarAndStickInstruction = order.withSugar() ? order.getSugarAmount() + ":0" : ":";
+        return drink.getKey() + ":" + sugarAndStickInstruction;
     }
 }
