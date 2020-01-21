@@ -13,6 +13,10 @@ public class Money {
         return amount;
     }
 
+    public boolean isGreaterThan(Money other) {
+        return this.amount >= other.amount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,16 +1,31 @@
 package coffeemachine.api.impl;
 
 import coffeemachine.api.Cashier;
+import coffeemachine.model.Drink;
 import coffeemachine.model.Money;
 import coffeemachine.model.Order;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CashierImpl implements Cashier {
+    private final Map<Drink, Money> priceByDrink;
+
+
+    public CashierImpl() {
+        priceByDrink = new HashMap<Drink, Money>();
+        priceByDrink.put(Drink.TEA, new Money(0.4));
+    }
+
     public Money computeMissingMoney(Order order) {
-        double teaPrice = 0.4;
+        Money drinkPrice = priceByDrink.get(order.getDrink());
         Money money = order.getMoney();
-        if (money.getAmount() > teaPrice) {
+        if (money.isGreaterThan(drinkPrice)) {
             return Money.NONE;
         }
-        return new Money(teaPrice - money.getAmount());
+
+        return new Money(drinkPrice.getAmount() - money.getAmount());
     }
+
+
 }
