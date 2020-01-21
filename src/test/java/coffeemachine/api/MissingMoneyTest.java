@@ -29,6 +29,7 @@ public class MissingMoneyTest {
                         {anOrder(Drink.CHOCOLATE, new Money(0.4)), "MISSING_MONEY:0,10"},
                         {anOrder(Drink.TEA, new Money(0.4)), "T::"},
                         {anOrder(Drink.CHOCOLATE, new Money(0.8)), "H::"},
+                        {anOrder(Drink.JUICE, new Money(0.2)), "MISSING_MONEY:0,40"},
 
                 }
         );

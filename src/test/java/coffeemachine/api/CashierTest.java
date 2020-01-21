@@ -33,6 +33,7 @@ public class CashierTest {
                         {anOrder(Drink.COFFEE, new Money(0.7)), Money.NONE},
                         {anOrder(Drink.CHOCOLATE, new Money(0.2)), new Money(0.3)},
                         {anOrder(Drink.CHOCOLATE, new Money(0.4)), new Money(0.1)},
+                        {anOrder(Drink.JUICE, new Money(0.4)), new Money(0.2)},
                 }
         );
     }

@@ -17,6 +17,7 @@ public class CashierImpl implements Cashier {
         priceByDrink.put(Drink.TEA, new Money(0.4));
         priceByDrink.put(Drink.COFFEE, new Money(0.6));
         priceByDrink.put(Drink.CHOCOLATE, new Money(0.5));
+        priceByDrink.put(Drink.JUICE, new Money(0.6));
     }
 
     public Money computeMissingMoney(Order order) {

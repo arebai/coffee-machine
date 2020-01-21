@@ -32,6 +32,7 @@ public class DrinkMakerTest {
                         {anOrder(Drink.CHOCOLATE, 1), "H:1:0"},
                         {anOrder(Drink.TEA, 0), "T::"},
                         {anOrder(Drink.COFFEE, 0), "C::"},
+                        {anOrder(Drink.JUICE, 0), "O::"},
                 }
         );
     }
