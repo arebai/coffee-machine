@@ -1,33 +1,45 @@
 package coffeemachine;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 import org.mockito.Mockito;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+@RunWith(Parameterized.class)
 public class DrinkMakerTest {
 
-    @Test
-    public void should_generate_instruction_when_order_1_tea_with_1_sugar() {
-        // given
-        DrinkMaker drinkMaker = Mockito.mock(DrinkMaker.class);
-        CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
-        Drink drink = Drink.TEA;
-        Order order = new Order(drink, 1);
-        // when
-        coffeeMachine.process(order);
-        // then
-        Mockito.verify(drinkMaker).send("T:1:0");
+    private Order order;
+    private String expectedInstruction;
+
+    @Parameters
+    public static Collection<Object[]> params() {
+        return Arrays.asList(
+                new Object[][]{
+                        { new Order(Drink.TEA, 1), "T:1:0"},
+                        { new Order(Drink.COFFEE, 2), "C:2:0"},
+
+                }
+        );
+    }
+
+    public DrinkMakerTest(Order order, String expectedInstruction) {
+        this.order = order;
+        this.expectedInstruction = expectedInstruction;
     }
 
     @Test
-    public void should_generate_instruction_when_order_1_coffee_with_2_sugar() {
+    public void should_generate_instruction_when_process_order() {
         // given
         DrinkMaker drinkMaker = Mockito.mock(DrinkMaker.class);
         CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
-        Drink drink = Drink.COFFEE;
-        Order order = new Order(drink, 2);
         // when
         coffeeMachine.process(order);
         // then
-        Mockito.verify(drinkMaker).send("C:2:0");
+        Mockito.verify(drinkMaker).send(expectedInstruction);
     }
+
 }
