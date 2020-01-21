@@ -5,43 +5,57 @@ import coffeemachine.model.Drink;
 import coffeemachine.model.Money;
 import coffeemachine.model.Order;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 import org.mockito.Mockito;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 import static org.mockito.Mockito.mock;
 
+@RunWith(Parameterized.class)
 public class MissingMoneyTest {
 
-    @Test
-    public void should_generate_tea_missing_money_instruction() {
-        // given
-        DrinkMaker drinkMaker = mock(DrinkMaker.class);
+    @Parameters
+    public static Collection<Object[]> params() {
+        return Arrays.asList(
+                new Object[][]{
+                        {anOrder(Drink.TEA, new Money(0.1)), "MISSING_MONEY:0,30"},
+                        {anOrder(Drink.COFFEE, new Money(0.1)), "MISSING_MONEY:0,50"},
 
-        CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker, new CashierImpl());
-        Order order = Order.Builder
-                .anOrder()
-                .drink(Drink.TEA)
-                .money(new Money(0.1))
-                .build();
-        // when
-        coffeeMachine.process(order);
-        // then
-        Mockito.verify(drinkMaker).send("MISSING_MONEY:0,30");
+                }
+        );
+    }
+
+    private Order order;
+    private String expectedInstruction;
+
+    public MissingMoneyTest(Order order, String expectedInstruction) {
+        this.order = order;
+        this.expectedInstruction = expectedInstruction;
     }
 
     @Test
-    public void should_generate_coffee_missing_money_instruction() {
+    public void should_generate_missing_money_instruction() {
         // given
         DrinkMaker drinkMaker = mock(DrinkMaker.class);
-
         CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker, new CashierImpl());
-        Order order = Order.Builder
-                .anOrder()
-                .drink(Drink.COFFEE)
-                .money(new Money(0.1))
-                .build();
+
         // when
         coffeeMachine.process(order);
+
         // then
-        Mockito.verify(drinkMaker).send("MISSING_MONEY:0,50");
+        Mockito.verify(drinkMaker).send(this.expectedInstruction);
+    }
+
+
+    private static Order anOrder(Drink drink, Money money) {
+        return Order.Builder
+                .anOrder()
+                .drink(drink)
+                .money(money)
+                .build();
     }
 }
