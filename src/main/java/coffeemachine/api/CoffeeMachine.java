@@ -30,8 +30,9 @@ public class CoffeeMachine {
 
     private String generateOrderInstruction(Order order) {
         Drink drink = order.getDrink();
+        String extraHotInstruction = order.isExtraHot() ? "h" : "";
         String sugarAndStickInstruction = order.withSugar() ? order.getSugarAmount() + ":0" : ":";
-        return drink.getKey() + ":" + sugarAndStickInstruction;
+        return drink.getKey() + extraHotInstruction + ":" + sugarAndStickInstruction;
     }
 
     private void sendInstruction(String instruction) {

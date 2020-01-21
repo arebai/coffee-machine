@@ -3,6 +3,7 @@ package coffeemachine.model;
 public class Order {
     private Drink drink;
     private int sugarAmount;
+    private boolean extraHot;
     private Money money;
 
     private Order() {
@@ -21,13 +22,19 @@ public class Order {
         return sugarAmount >= 1;
     }
 
+    public boolean isExtraHot() {
+        return extraHot;
+    }
+
     public Money getMoney() {
         return money;
     }
 
+
     public static final class Builder {
         private Drink drink;
         private int sugarAmount;
+        private boolean extraHot;
         private Money money;
 
         private Builder() {
@@ -47,6 +54,11 @@ public class Order {
             return this;
         }
 
+        public Builder extraHot(boolean extraHot) {
+            this.extraHot = extraHot;
+            return this;
+        }
+
         public Builder money(Money money) {
             this.money = money;
             return this;
@@ -57,6 +69,7 @@ public class Order {
             order.sugarAmount = this.sugarAmount;
             order.money = this.money;
             order.drink = this.drink;
+            order.extraHot = this.extraHot;
             return order;
         }
     }
